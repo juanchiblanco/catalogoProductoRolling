@@ -1,5 +1,5 @@
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
-import logo from "../../assets/coffee_logo.png";
+import logo from "../../assets/coffee_Logo.png";
 import { NavLink, Link, useNavigate } from "react-router";
 
 const Menu = ({ usuarioAdmin, setUsuarioAdmin }) => {
