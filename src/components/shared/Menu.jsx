@@ -30,7 +30,7 @@ const Menu = ({ usuarioAdmin, setUsuarioAdmin }) => {
             <NavLink className="nav-link" to={"/"}>
               Inicio
             </NavLink>
-            {usuarioAdmin===true ? (
+            {usuarioAdmin ? (
               <>
                 <NavLink className="nav-link" to={"/administrador"}>
                   Administrador

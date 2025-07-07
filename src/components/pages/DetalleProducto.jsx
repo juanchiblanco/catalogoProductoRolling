@@ -16,12 +16,20 @@ const DetalleProducto = () => {
               <Card.Title className="primary-font">Capuchino</Card.Title>
               <hr />
               <Card.Text>
-              El café americano es una bebida caliente que consiste en un espresso diluido con agua caliente, lo que resulta en una taza de café suave y aromático. Es una opción popular para aquellos que prefieren un café menos intenso que el espresso tradicional. Perfecto para disfrutar en cualquier momento del día.
-              <br/>
-              <br/>
-              <span className="primary-font fw-semibold ">Categoria:</span> Infusiones
-              <br className='mb-3'/>
-              <span className="primary-font fw-semibold ">Precio: $1000</span></Card.Text>
+                El café americano es una bebida caliente que consiste en un
+                espresso diluido con agua caliente, lo que resulta en una taza
+                de café suave y aromático. Es una opción popular para aquellos
+                que prefieren un café menos intenso que el espresso tradicional.
+                Perfecto para disfrutar en cualquier momento del día.
+                <br />
+                <br />
+                <span className="primary-font fw-semibold ">
+                  Categoria:
+                </span>{" "}
+                Infusiones
+                <br className="mb-3" />
+                <span className="primary-font fw-semibold ">Precio: $1000</span>
+              </Card.Text>
             </Card.Body>
           </Col>
         </Row>
