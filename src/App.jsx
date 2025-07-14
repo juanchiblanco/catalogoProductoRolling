@@ -9,13 +9,18 @@ import Footer from "./components/shared/Footer";
 import Menu from "./components/shared/Menu";
 import { Route } from "react-router";
 import Login from "./components/pages/Login";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProtectorAdmin from "./components/ProtectorAdmin";
 
 function App() {
   const usuarioLogueado = sessionStorage.getItem("userKey") || false;
+  const productosLocalStorage = JSON.parse(localStorage.getItem('catalogoProductos')) || []
   const [usuarioAdmin, setUsuarioAdmin] = useState(usuarioLogueado);
-  const [productos, setProductos] = useState([])
+  const [productos, setProductos] = useState(productosLocalStorage)
+
+  useEffect(()=>{
+    localStorage.setItem('catalogoProductos', JSON.stringify(productos))
+  }, [productos])
 
   return (
     <>
@@ -26,7 +31,7 @@ function App() {
         ></Menu>
         <main>
           <Routes>
-            <Route path="/" element={<Inicio></Inicio>}></Route>
+            <Route path="/" element={<Inicio productos={productos}></Inicio>}></Route>
             <Route
               path="/detalle"
               element={<DetalleProducto></DetalleProducto>}
