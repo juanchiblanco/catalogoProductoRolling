@@ -1,8 +1,9 @@
 import { Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
-const FormularioProducto = () => {
-    const {
+const FormularioProducto = ({ crearProducto }) => {
+  const {
     register,
     handleSubmit,
     reset,
@@ -11,14 +12,21 @@ const FormularioProducto = () => {
 
   const onSubmit = (producto) => {
     console.log(producto);
-    
+    //crear el producto nuevo
+    if (crearProducto(producto)) {
+      Swal.fire({
+        title: "Producto creado!",
+        text: `El producto ${producto.nombreProducto} fue creado correctacmente`,
+        icon: "success",
+      });
+    }
   };
- 
+
   return (
     <section className="container mainSection">
       <h1 className="display-4 mt-5">Nuevo producto</h1>
       <hr />
-     <Form className="my-4" onSubmit={handleSubmit(onSubmit)}>
+      <Form className="my-4" onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mb-3" controlId="formNombreProdcuto">
           <Form.Label>Producto*</Form.Label>
           <Form.Control
@@ -47,7 +55,7 @@ const FormularioProducto = () => {
           <Form.Control
             type="number"
             placeholder="Ej: 50"
-            step="0.01" 
+            step="0.01"
             {...register("precio", {
               required: "El precio es un valor obligatorio",
               min: {

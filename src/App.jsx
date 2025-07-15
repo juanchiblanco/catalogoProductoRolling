@@ -11,6 +11,8 @@ import { Route } from "react-router";
 import Login from "./components/pages/Login";
 import { useEffect, useState } from "react";
 import ProtectorAdmin from "./components/ProtectorAdmin";
+import { v4 as uuidv4 } from 'uuid';
+uuidv4();
 
 function App() {
   const usuarioLogueado = sessionStorage.getItem("userKey") || false;
@@ -21,6 +23,14 @@ function App() {
   useEffect(()=>{
     localStorage.setItem('catalogoProductos', JSON.stringify(productos))
   }, [productos])
+
+  const crearProducto = (productoNuevo) => {
+    //agregar id unico al producto
+    productoNuevo.id = uuidv4()
+    //agregar el producto al state producto
+    setProductos([...productos,productoNuevo])
+    return true
+  }
 
   return (
     <>
@@ -48,7 +58,7 @@ function App() {
 
               <Route
                 path="crear"
-                element={<FormularioProducto></FormularioProducto>}
+                element={<FormularioProducto crearProducto={crearProducto}></FormularioProducto>}
               ></Route>
               <Route
                 path="editar"
