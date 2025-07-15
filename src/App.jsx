@@ -32,6 +32,12 @@ function App() {
     return true
   }
 
+  const borrarProducto = (idProducto) => {
+    const productosFiltrados = productos.filter((itemProducto)=> itemProducto.id!==idProducto)
+    setProductos(productosFiltrados)
+    return true
+  }
+
   return (
     <>
       <BrowserRouter>
@@ -54,7 +60,7 @@ function App() {
               path="/administrador"
               element={<ProtectorAdmin isAdmin={usuarioAdmin}></ProtectorAdmin>}
             >
-              <Route index element={<Administrador setProductos={setProductos} productos={productos}></Administrador>}></Route>
+              <Route index element={<Administrador setProductos={setProductos} productos={productos} borrarProducto={borrarProducto}></Administrador>}></Route>
 
               <Route
                 path="crear"
