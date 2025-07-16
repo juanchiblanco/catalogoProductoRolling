@@ -38,6 +38,11 @@ function App() {
     return true
   }
 
+  const buscarProducto = (idProducto) => {
+    const productoBuscado = productos.find((itemProducto)=> itemProducto.id === idProducto)
+    return productoBuscado
+  }
+
   return (
     <>
       <BrowserRouter>
@@ -64,11 +69,11 @@ function App() {
 
               <Route
                 path="crear"
-                element={<FormularioProducto crearProducto={crearProducto}></FormularioProducto>}
+                element={<FormularioProducto crearProducto={crearProducto} titulo={'Crear producto'}></FormularioProducto>}
               ></Route>
               <Route
-                path="editar"
-                element={<FormularioProducto></FormularioProducto>}
+                path="editar/:id"
+                element={<FormularioProducto buscarProducto={buscarProducto} titulo={'Editar producto'}></FormularioProducto>}
               ></Route>
             </Route>
             <Route path="*" element={<Error404></Error404>}></Route>
