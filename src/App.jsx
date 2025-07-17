@@ -43,6 +43,23 @@ function App() {
     return productoBuscado
   }
 
+  const editarProducto = (idProducto, productoActualizado) => {
+    const productosEditados = productos.map((itemProducto)=>{
+      if(itemProducto.id===idProducto){
+        return {
+          ...itemProducto, 
+          ...productoActualizado
+        }
+      }else{
+        return itemProducto
+      }
+    })
+
+    console.log(productosEditados)
+    setProductos(productosEditados)
+    return true
+  }
+
   return (
     <>
       <BrowserRouter>
@@ -73,7 +90,7 @@ function App() {
               ></Route>
               <Route
                 path="editar/:id"
-                element={<FormularioProducto buscarProducto={buscarProducto} titulo={'Editar producto'}></FormularioProducto>}
+                element={<FormularioProducto buscarProducto={buscarProducto} titulo={'Editar producto'} editarProducto={editarProducto}></FormularioProducto>}
               ></Route>
             </Route>
             <Route path="*" element={<Error404></Error404>}></Route>

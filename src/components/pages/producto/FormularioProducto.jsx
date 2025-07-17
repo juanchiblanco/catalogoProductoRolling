@@ -1,10 +1,15 @@
 import { useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
 
-const FormularioProducto = ({ crearProducto, buscarProducto, titulo }) => {
+const FormularioProducto = ({
+  crearProducto,
+  buscarProducto,
+  titulo,
+  editarProducto,
+}) => {
   const {
     register,
     handleSubmit,
@@ -12,6 +17,8 @@ const FormularioProducto = ({ crearProducto, buscarProducto, titulo }) => {
     formState: { errors },
     setValue,
   } = useForm();
+
+  const navegacion = useNavigate()
 
   const { id } = useParams();
 
@@ -30,16 +37,28 @@ const FormularioProducto = ({ crearProducto, buscarProducto, titulo }) => {
   }, []);
 
   const onSubmit = (producto) => {
-    console.log(producto);
-    //crear el producto nuevo
-    if (crearProducto(producto)) {
-      Swal.fire({
-        title: "Producto creado!",
-        text: `El producto ${producto.nombreProducto} fue creado correctacmente`,
-        icon: "success",
-      });
-      //resetear form
-      reset();
+    if (titulo === "Crear producto") {
+      console.log(producto);
+      //crear el producto nuevo
+      if (crearProducto(producto)) {
+        Swal.fire({
+          title: "Producto creado!",
+          text: `El producto ${producto.nombreProducto} fue creado correctacmente`,
+          icon: "success",
+        });
+        //resetear form
+        reset();
+      }
+    } else {
+      //tomar los datos del form 'producto'
+      if (editarProducto(id, producto)) {
+        Swal.fire({
+          title: "Producto editado",
+          text: `El producto ${producto.nombreProducto} fue editado correctamente.`,
+          icon: "success",
+        });
+      }
+      navegacion('/administrador')
     }
   };
 
