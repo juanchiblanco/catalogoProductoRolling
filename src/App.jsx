@@ -71,8 +71,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Inicio productos={productos}></Inicio>}></Route>
             <Route
-              path="/detalle"
-              element={<DetalleProducto></DetalleProducto>}
+              path="/detalle/:id"
+              element={<DetalleProducto buscarProducto={buscarProducto}></DetalleProducto>}
             ></Route>
             <Route
               path="/login"
