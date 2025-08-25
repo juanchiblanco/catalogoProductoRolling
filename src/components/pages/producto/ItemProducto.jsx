@@ -1,9 +1,9 @@
 import { Button } from "react-bootstrap";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
-import { borrarProductoID } from "../../../helpers/queries";
+import { borrarProductoID, leerProuctos } from "../../../helpers/queries";
 
-const ItemProducto = ({ producto, fila }) => {
+const ItemProducto = ({ producto, fila, setListaProductos }) => {
   const eliminarProducto = () => {
     Swal.fire({
       title: "Eliminar producto",
@@ -24,6 +24,9 @@ const ItemProducto = ({ producto, fila }) => {
             icon: "success",
           });
           //Luego debo actualizar la tabla
+          const respuestaProductos = await leerProuctos()
+          const productosActualizados = await respuestaProductos.json()
+          setListaProductos(productosActualizados)
         } else {
           Swal.fire({
             title: "Producto eliminado!",
