@@ -54,7 +54,7 @@ const ItemProducto = ({ producto, fila, setListaProductos }) => {
       <td className="text-center">
         <Link
           className="me-lg-2 btn btn-warning"
-          to={`/administrador/editar/${producto.id}`}
+          to={`/administrador/editar/${producto._id}`}
         >
           <i className="bi bi-pencil-square"></i>
         </Link>
