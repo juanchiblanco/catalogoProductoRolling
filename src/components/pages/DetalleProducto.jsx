@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
 import { Container, Card, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router";
+import { obtenerProuctoID } from "../../helpers/queries";
 
-const DetalleProducto = ({buscarProducto}) => {
+const DetalleProducto = () => {
 
   const {id} = useParams()
   const [producto, setProducto] = useState({})
 
   useEffect(()=>{
-    const productoBuscado = buscarProducto(id)
-    setProducto(productoBuscado)
+    obtenerProducto()
   }, [])
   
+  async function obtenerProducto() {
+        const respuesta = await obtenerProuctoID(id);
+        if (respuesta.status === 200) {
+          const productoBuscado = await respuesta.json();
+          setProducto(productoBuscado)
+        }
+      }
   
   return (
     <Container className="my-3 mainSection">
