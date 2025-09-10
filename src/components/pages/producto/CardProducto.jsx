@@ -5,7 +5,6 @@ import { Link } from "react-router";
 const CardProducto = ({producto}) => {
 
   
-
   return (
     <Col md={4} lg={3} className="mb-3">
       <Card className="h-100">
