@@ -1,4 +1,5 @@
 const urlProductos = import.meta.env.VITE_API_PRODUCTOS
+const urlUsuarios = import.meta.env.VITE_API_USUARIOS
 // get post delete put
 console.log(urlProductos)
 
@@ -63,6 +64,24 @@ export const borrarProductoID = async (id) => {
     try {
         const respuesta = await fetch(urlProductos+`/${id}`,{
             method: 'DELETE'
+        })
+        return respuesta
+    } catch (error) {
+        console.error(error)
+        return null
+    }
+}
+
+//login
+
+export const login = async (usuario) => {
+    try {
+        const respuesta = await fetch(urlUsuarios+'/login',{
+            method: 'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(usuario)
         })
         return respuesta
     } catch (error) {
