@@ -20,12 +20,14 @@ const Login = ({ setUsuarioAdmin }) => {
       const datosUsuario = await respuesta.json();
       console.log(datosUsuario);
       //actualizar el state de usaurioAdmin
+      setUsuarioAdmin({nombreUsuario:datosUsuario.nombreUsuario, token:datosUsuario.token})
       //guardar token en sessionStorage
       Swal.fire({
         title: "Login existoso",
         text: `Bienvenido ${datosUsuario.nombreUsuario}`,
         icon: "success",
       })
+      navegacion("/administrador");
       }else{
         Swal.fire({
         title: "Ocurrio un error",
@@ -33,20 +35,6 @@ const Login = ({ setUsuarioAdmin }) => {
         icon: "error",
       })
       }
-
-    console.log(usuario);
-    if (
-      usuario.email === import.meta.env.VITE_API_EMAIL &&
-      usuario.password === import.meta.env.VITE_API_PASSWORD
-    ) {
-      //soy el administrador
-      console.log("Soy el admin");
-      setUsuarioAdmin(true);
-      sessionStorage.setItem("userKey", true);
-      navegacion("/administrador");
-    } else {
-      console.log("Email o password incorrectos");
-    }
   };
 
   return (
