@@ -15,7 +15,7 @@ import { v4 as uuidv4 } from 'uuid';
 uuidv4();
 
 function App() {
-  const usuarioLogueado = sessionStorage.getItem("userKey") || {};
+  const usuarioLogueado = JSON.parse(sessionStorage.getItem("userKey")) || {};
   const productosLocalStorage = JSON.parse(localStorage.getItem('catalogoProductos')) || []
   const [usuarioAdmin, setUsuarioAdmin] = useState(usuarioLogueado);
   const [productos, setProductos] = useState(productosLocalStorage)
