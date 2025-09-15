@@ -40,7 +40,6 @@ const FormularioProducto = ({titulo}) => {
 
   const onSubmit = async (producto) => {
     if (titulo === "Crear producto") {
-      console.log(producto);
       //crear el producto nuevo
       const respuesta = await crearProducto(producto);
       if (respuesta.status === 201) {

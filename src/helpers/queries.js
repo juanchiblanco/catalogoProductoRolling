@@ -1,7 +1,6 @@
 const urlProductos = import.meta.env.VITE_API_PRODUCTOS;
 const urlUsuarios = import.meta.env.VITE_API_USUARIOS;
 // get post delete put
-console.log(urlProductos);
 
 //get
 export const leerProuctos = async () => {

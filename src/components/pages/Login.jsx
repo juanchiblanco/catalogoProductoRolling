@@ -18,7 +18,6 @@ const Login = ({ setUsuarioAdmin }) => {
 
     if (respuesta.status === 200) {
       const datosUsuario = await respuesta.json();
-      console.log(datosUsuario);
       //actualizar el state de usaurioAdmin
       setUsuarioAdmin({nombreUsuario:datosUsuario.nombreUsuario, token:datosUsuario.token})
       //guardar token en sessionStorage
