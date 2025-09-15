@@ -5,31 +5,30 @@ import { useEffect, useState } from "react";
 import { leerProuctos } from "../../helpers/queries.js";
 
 const Administrador = () => {
-  
-  const [listaProductos, setListaProductos] = useState([])
+  const [listaProductos, setListaProductos] = useState([]);
 
-  useEffect(()=>{
-    obtenerproductos()
-  },[])
+  useEffect(() => {
+    obtenerproductos();
+  }, []);
 
-  const obtenerproductos = async ()=>{
-      const respuesta = await leerProuctos()
-    if(respuesta.status===200){
-      const datos = await respuesta.json()
-      setListaProductos(datos)
-    }else{
-      console.info('Ocurrio un error al buscar los productos')
+  const obtenerproductos = async () => {
+    const respuesta = await leerProuctos();
+    if (respuesta.status === 200) {
+      const datos = await respuesta.json();
+      setListaProductos(datos);
+    } else {
+      console.info("Ocurrio un error al buscar los productos");
     }
-  }
+  };
 
-    return (
-        <section className="container mainSection">
+  return (
+    <section className="container mainSection">
       <div className="d-flex justify-content-between align-items-center mt-5">
         <h1 className="display-4 ">Productos disponibles</h1>
         <div>
-        <Link className="btn btn-primary" to={'/administrador/crear'}>
-          <i className="bi bi-file-earmark-plus"></i>
-        </Link>
+          <Link className="btn btn-primary" to={"/administrador/crear"}>
+            <i className="bi bi-file-earmark-plus"></i>
+          </Link>
         </div>
       </div>
       <hr />
@@ -45,13 +44,18 @@ const Administrador = () => {
           </tr>
         </thead>
         <tbody>
-          {
-            listaProductos.map((producto, indice)=> <ItemProducto key={producto._id} producto={producto} fila={indice + 1} setListaProductos={setListaProductos}></ItemProducto>)
-          }
+          {listaProductos.map((producto, indice) => (
+            <ItemProducto
+              key={producto._id}
+              producto={producto}
+              fila={indice + 1}
+              setListaProductos={setListaProductos}
+            ></ItemProducto>
+          ))}
         </tbody>
       </Table>
     </section>
-    );
+  );
 };
 
 export default Administrador;
