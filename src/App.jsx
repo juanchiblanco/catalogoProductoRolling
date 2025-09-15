@@ -27,43 +27,7 @@ function App() {
   useEffect(()=>{
     sessionStorage.setItem('userKey', JSON.stringify(usuarioAdmin))
   }, [usuarioAdmin])
-
-  const crearProducto = (productoNuevo) => {
-    //agregar id unico al producto
-    productoNuevo.id = uuidv4()
-    //agregar el producto al state producto
-    setProductos([...productos,productoNuevo])
-    return true
-  }
-
-  const borrarProducto = (idProducto) => {
-    const productosFiltrados = productos.filter((itemProducto)=> itemProducto.id!==idProducto)
-    setProductos(productosFiltrados)
-    return true
-  }
-
-  const buscarProducto = (idProducto) => {
-    const productoBuscado = productos.find((itemProducto)=> itemProducto.id === idProducto)
-    return productoBuscado
-  }
-
-  const editarProducto = (idProducto, productoActualizado) => {
-    const productosEditados = productos.map((itemProducto)=>{
-      if(itemProducto.id===idProducto){
-        return {
-          ...itemProducto, 
-          ...productoActualizado
-        }
-      }else{
-        return itemProducto
-      }
-    })
-
-    console.log(productosEditados)
-    setProductos(productosEditados)
-    return true
-  }
-
+  
   return (
     <>
       <BrowserRouter>
