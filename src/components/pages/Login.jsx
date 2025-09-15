@@ -1,30 +1,39 @@
 import { Col, Form, Row, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
+import { login } from "../../helpers/queries.js";
+import Swal from "sweetalert2";
 
-const Login = ({setUsuarioAdmin}) => {
+const Login = ({ setUsuarioAdmin }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const navegacion = useNavigate()
+  const navegacion = useNavigate();
 
-  const inciarSesion = (usuario) => {
-    console.log(usuario);
-    if (
-      usuario.email === import.meta.env.VITE_API_EMAIL &&
-      usuario.password === import.meta.env.VITE_API_PASSWORD
-    ) {
-      //soy el administrador
-      console.log("Soy el admin");
-      setUsuarioAdmin(true)
-      sessionStorage.setItem('userKey', true)
-      navegacion('/administrador')
-    } else {
-      console.log("Email o password incorrectos");
-    }
+  const inciarSesion = async (usuario) => {
+    const respuesta = await login(usuario);
+
+    if (respuesta.status === 200) {
+      const datosUsuario = await respuesta.json();
+      //actualizar el state de usaurioAdmin
+      setUsuarioAdmin({nombreUsuario:datosUsuario.nombreUsuario, token:datosUsuario.token})
+      //guardar token en sessionStorage
+      Swal.fire({
+        title: "Login existoso",
+        text: `Bienvenido ${datosUsuario.nombreUsuario}`,
+        icon: "success",
+      })
+      navegacion("/administrador");
+      }else{
+        Swal.fire({
+        title: "Ocurrio un error",
+        text: `Credenciales incorrectas`,
+        icon: "error",
+      })
+      }
   };
 
   return (

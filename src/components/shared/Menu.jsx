@@ -3,13 +3,11 @@ import logo from "../../assets/coffee_Logo.png";
 import { NavLink, Link, useNavigate } from "react-router";
 
 const Menu = ({ usuarioAdmin, setUsuarioAdmin }) => {
-  console.log(usuarioAdmin)
 
   const navegacion = useNavigate()
 
   const logout = ()=>{
-    setUsuarioAdmin(false)
-    sessionStorage.removeItem('userKey')
+    setUsuarioAdmin({})
     navegacion('/')
   }
 
@@ -30,7 +28,7 @@ const Menu = ({ usuarioAdmin, setUsuarioAdmin }) => {
             <NavLink className="nav-link" to={"/"}>
               Inicio
             </NavLink>
-            {usuarioAdmin ? (
+            {usuarioAdmin.token ? (
               <>
                 <NavLink className="nav-link" to={"/administrador"}>
                   Administrador

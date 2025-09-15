@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
-import { borrarProductoID, leerProuctos } from "../../../helpers/queries";
+import { borrarProductoID, leerProuctos } from "../../../helpers/queries.js";
 
 const ItemProducto = ({ producto, fila, setListaProductos }) => {
   const eliminarProducto = () => {
