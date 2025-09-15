@@ -72,6 +72,13 @@ const FormularioProducto = ({ titulo }) => {
           icon: "success",
         });
         navegacion("/administrador");
+      } else{
+        const datosErroneos = await respuesta.json()
+        Swal.fire({
+          title: "Error al crear el producto!",
+          text: `El producto ${producto.nombreProducto} no pudo ser editado. ${datosErroneos.errores[0].msg}`,
+          icon: "error",
+        });
       }
     }
   };
