@@ -37,10 +37,10 @@ function App() {
         ></Menu>
         <main>
           <Routes>
-            <Route path="/" element={<Inicio productos={productos}></Inicio>}></Route>
+            <Route path="/" element={<Inicio></Inicio>}></Route>
             <Route
               path="/detalle/:id"
-              element={<DetalleProducto buscarProducto={buscarProducto}></DetalleProducto>}
+              element={<DetalleProducto></DetalleProducto>}
             ></Route>
             <Route
               path="/login"
@@ -50,15 +50,15 @@ function App() {
               path="/administrador"
               element={<ProtectorAdmin isAdmin={usuarioAdmin}></ProtectorAdmin>}
             >
-              <Route index element={<Administrador setProductos={setProductos} productos={productos} borrarProducto={borrarProducto}></Administrador>}></Route>
+              <Route index element={<Administrador setProductos={setProductos}></Administrador>}></Route>
 
               <Route
                 path="crear"
-                element={<FormularioProducto crearProducto={crearProducto} titulo={'Crear producto'}></FormularioProducto>}
+                element={<FormularioProducto titulo={'Crear producto'}></FormularioProducto>}
               ></Route>
               <Route
                 path="editar/:id"
-                element={<FormularioProducto buscarProducto={buscarProducto} titulo={'Editar producto'} editarProducto={editarProducto}></FormularioProducto>}
+                element={<FormularioProducto titulo={'Editar producto'}></FormularioProducto>}
               ></Route>
             </Route>
             <Route path="*" element={<Error404></Error404>}></Route>
