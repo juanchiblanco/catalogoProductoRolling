@@ -1,4 +1,4 @@
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 import ItemProducto from "./producto/ItemProducto";
 import { Link } from "react-router";
 import { useEffect, useState } from "react";
@@ -54,6 +54,25 @@ const Administrador = () => {
           ))}
         </tbody>
       </Table>
+      <div className="d-flex justify-content-center align-items-center my-3">
+        <Button
+          variant="secondary"
+          // onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+          // disabled={page === 1}
+        >
+          Anterior
+        </Button>
+        <span className="mx-3">
+          Página 1 de 3
+        </span>
+        <Button
+          variant="secondary"
+          // onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
+          // disabled={page === totalPages}
+        >
+          Siguiente
+        </Button>
+      </div>
     </section>
   );
 };
