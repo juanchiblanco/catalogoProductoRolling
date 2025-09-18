@@ -53,8 +53,10 @@ const Administrador = () => {
             <ItemProducto
               key={producto._id}
               producto={producto}
-              fila={indice + 1}
+              fila={(page - 1) * limit + indice + 1}
               setListaProductos={setListaProductos}
+              limit={limit}
+              page={page}
             ></ItemProducto>
           ))}
         </tbody>
